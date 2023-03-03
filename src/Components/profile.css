@@ -1,0 +1,65 @@
+.main-profile-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+}
+
+.profile-card{
+    background-color:white;
+    height: fit-content;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.profile-pic-div-main{
+    padding: 3%;
+}
+
+.profile-pic-div{
+    height: 10rem;
+    width: 10rem;
+    border-radius: 50%;
+}
+
+.phone-div{
+    padding: 1px;
+}
+
+.email-div {
+    align-items: start;
+    padding: 1px;
+    padding-bottom: 30px;
+}
+
+.profile-donation-flems-div{
+    display: flex;
+    justify-content: space-between;
+}
+
+.profile-donation-div{
+    justify-content: space-between;
+    margin-right: 100px;
+    align-self: center;
+}
+
+.profile-flems-div{
+    align-self: flex-end;
+    margin-left: 100px;
+}
+
+.donstions-number{
+    display: flex;
+    justify-content: center;
+}
+
+.flems-number {
+    display: flex;
+    justify-content: center;
+}

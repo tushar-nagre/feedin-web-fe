@@ -1,0 +1,46 @@
+.main-login-div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: fit-content;
+    height: 100vh;
+}
+.logo-div{
+    height: 150px;
+}
+.formDiv{
+    height: fit-content;
+    width: 45%;
+}
+#form{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column; 
+}
+
+.login-btn, .google-btn{
+    width: fit-content;
+    height: fit-content;
+}
+
+.formDiv button {
+    width: 30vh;
+    padding: 8px;
+}
+
+.btn{
+    color: white;
+    background-color:#3C3767;
+}
+
+.login-btn button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.google-btn button:hover {
+    background-color: #fff;
+    color: #000;
+}

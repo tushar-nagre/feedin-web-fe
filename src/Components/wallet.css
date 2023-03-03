@@ -1,0 +1,49 @@
+.main-wallet-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+}
+
+.wallet-card {
+    background-color: rgba(0, 0, 0, .5);
+    color: white;
+    height: fit-content;
+    width: fit-content;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    padding: 15px;
+}
+
+.hey-wallet-div{
+    padding-bottom: 10px;
+}
+
+.flame-wallet-div{
+    flex-direction: row;
+}
+
+.accumulated-wallet-div{
+   padding-bottom: 20px;
+}
+
+table {
+    border-collapse: separate;
+    border-spacing: 100px 0;
+}
+
+th {
+    border-bottom: 1pt solid #6D5CE8;
+}
+
+td {
+    padding: 10px 0;
+    text-align: center
+}
+
+
+

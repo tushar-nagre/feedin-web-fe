@@ -1,0 +1,36 @@
+.registrForm {
+    height: 50vh;
+    overflow-y: scroll;
+    scrollbar-width: 0px;
+    background-color: #000;
+
+}
+.main-donor-registration-div {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: fit-content;
+    height: 100vh;
+}
+
+.donor-restration-page-logo-div {
+    height: 100px;
+}
+
+.donor-regi-img{
+    height: 80px;
+    width: 150px;
+}
+
+.register-btn button:hover {
+    background-color: green;
+    color: #000;
+}
+
+#registrForm {
+    height: 500px;
+    width: 350px;
+    overflow-y: auto
+}
+

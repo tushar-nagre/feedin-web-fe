@@ -1,7 +1,9 @@
 .App {
   text-align: center;
 }
-
+.MainContainer{
+  background-color: #6D5CE8;
+}
 .App-logo {
   height: 40vmin;
   pointer-events: none;

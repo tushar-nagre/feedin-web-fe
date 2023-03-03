@@ -1,0 +1,59 @@
+.main-registeras {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: fit-content;
+    height: 100vh;
+}
+
+.logo-div {
+    height: 150px;
+}
+
+.btn-group {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 2%;
+} 
+
+button {
+    /* background-color: #fff; */
+    width: 30vh;
+    padding: 8px;
+}
+
+.btn {
+    color: white;
+    background-color: #3C3767;
+    padding: 5%;
+}
+
+.login-btn {
+    padding-top: 10%;
+}
+
+.volunteer-btn{
+    padding-top: 10%;
+}
+
+.ngo-btn {
+    padding-top: 10%;
+}
+
+.volunteer-btn button:hover {
+    background-color: #fff;
+    color: #000;
+}
+
+.ngo-btn button:hover{
+    background-color: #fff;
+    color: #000;
+}
+
+.donor-btn button:hover{
+    background-color: #fff;
+    color:#000;
+}

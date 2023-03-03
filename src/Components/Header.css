@@ -1,0 +1,33 @@
+.header-main{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    height: fit-content;
+    width: 100%;
+    padding: 8px 20px;
+}
+.header-main .nav-menus{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    margin: 0px;
+}
+.navbar-nav{
+    margin: auto;
+    width: auto;
+}
+
+
+/* 
+.nav-logo {
+    width: 35%;
+}
+
+.nav-menus{
+
+}
+
+.profile{
+} */
