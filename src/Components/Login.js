@@ -1,58 +1,103 @@
-import React from "react";
+import React, { useState } from "react";
 import login from "./login.css";
+import { useHistory } from "react-router-dom";
 
 export default function Login() {
+  const history = useHistory();
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const userLogin = async (e) => {
+    e.preventDefault();
+    const res = await fetch("/signin", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+    });
+
+    const data = res.json();
+    console.log("--->", data);
+    if (res.status || !data) {
+      window.alert("Invalid Credentials.");
+    } else {
+      window.alert("Login successfull.");
+      history.push("/donations");
+    }
+  };
+
   return (
     <div className="main-login-div">
       <div className="logo-div">
-        <img src="./assets/images/feedinLogo.png" height={150} />
+        <img src="./assets/images/feedinLogo.png" alt="image1" height={150} />
       </div>
       <div className="formDiv">
-        <form id="form">
+        <form id="form-div" method="POST">
           <dir className="input-fields">
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="form-label">
+            <div className="mb-3">
+              <label for="exampleInputEmail1" className="form-label">
                 Email address
               </label>
-              <input type="email" class="form-control " />
-              <div id="emailHelp" class="form-text">
+              <input
+                type="email"
+                className="form-control "
+                name="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+
+              <div id="emailHelp" className="form-text">
                 We'll never share your email with anyone else.
               </div>
             </div>
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">
+            <div className="mb-3">
+              <label for="exampleInputPassword1" className="form-label">
                 Password
               </label>
-              <input type="password" class="form-control " />
+              <input
+                type="password"
+                className="form-control "
+                name="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
             </div>
-            <div class="mb-3 form-check">
+            <div className="checkbox-div">
               <input
                 type="checkbox"
-                class="form-check-input"
+                className="checkbox-input-div"
                 id="exampleCheck1"
               />
-              <label class="form-check-label" for="exampleCheck1">
-                Agree Terms & Conditions
+              <label className="form-check-label" for="exampleCheck">
+                &nbsp;&nbsp;Agree Terms & Conditions
               </label>
             </div>
           </dir>
           <div className="btn-group">
             <div className="login-btn">
-              <button type="submit" class="btn">
+              <button type="submit" className="btn" onClick={userLogin}>
                 Submit
               </button>
             </div>
             <br />
             <br />
-            <div className="google-btn">
-              <button type="submit" class="btn">
+            {/* <div className="google-btn">
+              <button type="submit" className="btn">
                 <img
                   className="img-btn"
                   src="./assets/images/google.png"
+                  alt="image2"
                   height={35}
                 />
                 &nbsp;Continue with Google
               </button>
+            </div> */}
+            <div className="forgot-pass-div">
+              <a href="#">Forgot Password</a>
             </div>
           </div>
         </form>

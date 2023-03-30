@@ -1,70 +1,113 @@
 import React from "react";
-import donorRegistration from "./donorRegistration.css";
 
 export default function NGORegistration() {
   return (
     <div className="main-donor-registration-div">
       <div className="donor-restration-page-logo-div">
-        <img className="donor-regi-img" src="./assets/images/feedinLogo.png" />
+        <img
+          className="donor-regi-img"
+          src="./assets/images/feedinLogo.png"
+          alt="image5"
+          height={150}
+        />
       </div>
-      <div className="ngoFormDiv">
-        <form id="form">
+      <div className="formDiv">
+        <form id="0" className="donor-registration-form-div">
           <div className="donor-input-fields">
-            <div class="mb-3">
-              <label class="form-label">Name</label>
-              <input type="text" class="form-control " />
+            <div className="mb-3">
+              <label className="form-label">Name</label>
+              <input
+                type="text"
+                className="form-control"
+                name="name"
+                placeholder="Your name"
+              />
             </div>
 
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="donor-form-label">
+            <div className="mb-3">
+              <label for="exampleInputEmail1" className="donor-form-label">
                 Email address
               </label>
-              <input type="email" class="form-control " />
-              <div id="emailHelp" class="form-text">
+              <input
+                type="email"
+                className="form-control"
+                name="email"
+                placeholder="Your email"
+              />
+              <div id="emailHelp" className="form-text">
                 We'll never share your email with anyone else
               </div>
             </div>
 
-            <div class="mb-3">
-              <label class="form-label">Mobile Number</label>
+            <div className="mb-3">
+              <label className="form-label">Mobile Number</label>
               <input
                 type="tel"
-                class="form-control "
+                className="form-control "
+                name="phone"
                 pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                placeholder="Your phone number"
               />
             </div>
 
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">
+            <div className="mb-3">
+              <label for="exampleInputPassword1" className="form-label">
                 Password
               </label>
-              <input type="password" class="form-control " />
+              <input
+                type="password"
+                className="form-control"
+                name="password"
+                placeholder="Password"
+              />
             </div>
 
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">
+            <div className="mb-3">
+              <label for="exampleInputPassword1" className="form-label">
                 Confirm Password
               </label>
-              <input type="password" class="form-control " />
+              <input
+                type="password"
+                name="cpassword"
+                className="form-control"
+                placeholder="Confirm password"
+              />
             </div>
 
-            <div class="mb-3">
-              <label class="form-label">Address</label>
-              <input type="text" class="form-control " />
+            <div className="mb-3">
+              <label className="form-label">Address</label>
+              <input
+                type="text"
+                className="form-control"
+                name="address"
+                placeholder="Your address"
+              />
             </div>
 
-            <div class="mb-3">
-              <label class="form-label">Organization Name</label>
-              <input type="text" class="form-control " />
+            <div className="mb-3">
+              <label className="form-label">Organization name</label>
+              <input
+                type="text"
+                className="form-control"
+                name="address"
+                placeholder="Your address"
+              />
             </div>
-            <div>
-              <input type="file" id="myFile" name="filename" />
+
+            <div className="mb-3">
+              <label className="form-label">Organization certificate</label>
+              <input
+                type="file"
+                className="form-control"
+                name="address"
+                placeholder="Your address"
+              />
             </div>
           </div>
           <br />
           <br />
           <div className="register-btn">
-            <button type="submit" class="btn ngo-btn">
+            <button type="submit" className="btn">
               Submit
             </button>
           </div>

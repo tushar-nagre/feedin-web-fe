@@ -8,54 +8,77 @@ export default function VolunteerRegistration() {
         <img
           className="donor-regi-img"
           src="./assets/images/feedinLogo.png"
+          alt="image5"
           height={150}
         />
       </div>
-      <div className="formDiv ">
-        <form id="form">
+      <div className="formDiv">
+        <form id="0" className="donor-registration-form-div">
           <div className="donor-input-fields">
-            <div class="mb-3">
-              <label class="form-label">Name</label>
-              <input type="text" class="form-control " />
+            <div className="mb-3">
+              <label className="form-label">Name</label>
+              <input
+                type="text"
+                className="form-control"
+                name="name"
+                placeholder="Your name"
+              />
             </div>
 
-            <div class="mb-3">
-              <label for="exampleInputEmail1" class="donor-form-label">
+            <div className="mb-3">
+              <label for="exampleInputEmail1" className="donor-form-label">
                 Email address
               </label>
-              <input type="email" class="form-control " />
-              <div id="emailHelp" class="form-text">
+              <input
+                type="email"
+                className="form-control"
+                name="email"
+                placeholder="Your email"
+              />
+              <div id="emailHelp" className="form-text">
                 We'll never share your email with anyone else
               </div>
             </div>
 
-            <div class="mb-3">
-              <label class="form-label">Mobile Number</label>
+            <div className="mb-3">
+              <label className="form-label">Mobile Number</label>
               <input
                 type="tel"
-                class="form-control "
+                className="form-control "
+                name="phone"
                 pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
+                placeholder="Your phone number"
               />
             </div>
 
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">
+            <div className="mb-3">
+              <label for="exampleInputPassword1" className="form-label">
                 Password
               </label>
-              <input type="password" class="form-control " />
+              <input
+                type="password"
+                className="form-control"
+                name="password"
+                placeholder="Password"
+              />
             </div>
 
-            <div class="mb-3">
-              <label for="exampleInputPassword1" class="form-label">
+            <div className="mb-3">
+              <label for="exampleInputPassword1" className="form-label">
                 Confirm Password
               </label>
-              <input type="password" class="form-control " />
+              <input
+                type="password"
+                name="cpassword"
+                className="form-control"
+                placeholder="Confirm password"
+              />
             </div>
           </div>
           <br />
           <br />
           <div className="register-btn">
-            <button type="submit" class="btn">
+            <button type="submit" className="btn">
               Submit
             </button>
           </div>

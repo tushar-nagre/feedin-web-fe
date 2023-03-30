@@ -1,0 +1,89 @@
+.main-card {
+    background-color: white;
+    height: 200px;
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-radius: 10px;
+    flex-direction: row;
+    padding: 15px;
+    margin: 15px;
+}
+
+.card-group {
+    display: flex;
+    justify-content: center;
+}
+
+.img-div {
+    height: 100%;
+    width: 40%;
+    border-radius: 10px;
+    background-color: gray;
+    overflow: hidden;
+}
+
+.img-div img {
+    height: 180px;
+    width: 180px;
+    background-position: center;
+}
+
+hr {
+    width: 3px;
+    background-color: gray;
+    height: 100%;
+    border-radius: 10px;
+    margin: 0px 10px;
+}
+
+.card-details {
+    height: 100%;
+    width: 65%;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+    padding: 20px;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI",
+        Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+        sans-serif;
+}
+
+.name-rating,
+.type-qty,
+.food-dist,
+.best-before {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-direction: row;
+    width: 100%;
+}
+
+.rating-box {
+    height: fit-content;
+    padding: 8px;
+    width: 60px;
+    background-color: #6d5ce8;
+    border-radius: 8px;
+    color: white;
+}
+
+.rating-box p {
+    margin-bottom: 0px;
+}
+
+.food-qty {
+    color: gray;
+}
+
+.small-text{
+    font-size: x-small;
+}
+
+.donted-to-div{
+    padding: 0%;
+    margin: 0%;
+}

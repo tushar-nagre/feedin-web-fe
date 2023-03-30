@@ -11,20 +11,32 @@ export default function RegisterAs() {
 
       <div className="btn-group">
         <div className="donor-btn">
-          <button type="submit" class="btn">
-            Donor
-          </button>
+          <a href="/registerdonor">
+            <button type="submit" className="btn">
+              Donor
+            </button>
+          </a>
         </div>
         <div className="volunteer-btn">
-          <button type="submit" class="btn">
-            volunteer
-          </button>
+          <a href="/registervolunteer">
+            <button type="submit" className="btn">
+              volunteer
+            </button>
+          </a>
         </div>
         <div className="ngo-btn">
-          <button type="submit" class="btn">
-            NGO
-          </button>
+          <a href="/registerngo">
+            <button type="submit" className="btn">
+              NGO
+            </button>
+          </a>
         </div>
+      </div>
+      <br />
+      <div className="login-page-link">
+        <a classname="login-page-linl-text" href="/login">
+          I Already have an account
+        </a>
       </div>
     </div>
   );

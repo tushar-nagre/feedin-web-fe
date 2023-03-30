@@ -1,9 +1,26 @@
+.donor-registration-form-div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+.donor-input-fields{
+    height: 60vh;
+    overflow-y: scroll;
+    scrollbar-width: 0px;
+}
+
 .registrForm {
     height: 50vh;
     overflow-y: scroll;
     scrollbar-width: 0px;
     background-color: #000;
+}
 
+#form-div{
+    height: 65vh;
+    overflow-y: auto;
 }
 .main-donor-registration-div {
     display: flex;
@@ -34,3 +51,10 @@
     overflow-y: auto
 }
 
+.register-btn{
+    align-items: center;
+}
+
+.form-control{
+    width: 50vh;
+}

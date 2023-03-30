@@ -12,8 +12,8 @@ export default function DonationDetails() {
             className="carousel slide"
             data-ride="carousel"
           >
-            <div class="carousel-inner">
-              <div class="carousel-item active">
+            <div className="carousel-inner">
+              <div className="carousel-item active">
                 <img
                   className="d-block w-100"
                   src="./assets/images/food.png"
@@ -22,14 +22,14 @@ export default function DonationDetails() {
               </div>
               <div className="carousel-item">
                 <img
-                  class="d-block w-100"
+                  className="d-block w-100"
                   src="./assets/images/food.png"
                   alt="Second slide"
                 />
               </div>
               <div className="carousel-item">
                 <img
-                  class="d-block w-100"
+                  className="d-block w-100"
                   src="./assets/images/food.png"
                   alt="Third slide"
                 />

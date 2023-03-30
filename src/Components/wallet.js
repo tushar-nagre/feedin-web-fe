@@ -27,11 +27,11 @@ export default function Profile() {
               <th>Amount of 🔥</th>
             </tr>
             <tr>
-              <td>date | time</td>
+              <td>26 MAR 2023 | 20:30 </td>
               <td>10 🔥</td>
             </tr>
             <tr>
-              <td>date | time </td>
+              <td>10 MAR 2023 | 22:30 </td>
               <td>10 🔥</td>
             </tr>
           </table>

@@ -1,0 +1,139 @@
+.main-add-donation-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+    align-items: center;
+}
+
+#form{
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+input {
+    width: 50%;
+    background-color:white;
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+label{
+    font-size: larger;
+}
+
+.chapati-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.dry-bhaji-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.wet-bhaji-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.rice-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.best-before-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.best-before-div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.donate-img{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    align-items: center;
+}
+
+.line{
+    width: 100%;
+    background-color: black;
+    height: 2px;
+    border: 0px;
+    border-radius: 15px;
+    margin: 0.5rem 0px;
+}
+
+.donate-button-1 {
+    border: none;
+    background-color: rgba(0, 0, 0, .6);
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 5px;
+}
+
+.donate-button{
+    align-self: center;
+    padding: 30px;
+}
+/* 
+.button {
+    background-color: #fff;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    border: none;
+    color: #000;
+    padding: 20px;
+    font-size: 16px;
+    margin: 4px 2px;
+}
+
+.button3 {
+    border-radius: 8px;
+    height: 5vh;
+    width: 5vh;
+}
+
+.button4 {
+    border-radius: 8px;
+    height: 5vh;
+    width: 10vh;
+}
+ */
