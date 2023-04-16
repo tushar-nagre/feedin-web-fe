@@ -22,6 +22,7 @@ import AcceptRequest from "./Components/AcceptRequestCard";
 import VolunteerDashboard from "./Components/VolunteerDashboaed";
 import History from "./Components/History";
 import { ToastContainer } from "react-toastify";
+import TermsCondition from "./Components/TermsCondition";
 
 function App() {
   const donationsItems = [
@@ -123,6 +124,9 @@ function App() {
         </Route>
         <Route path="/accept-request">
           <AcceptRequest />
+        </Route>
+        <Route path="/termsandcondition">
+          <TermsCondition />
         </Route>
         <Route>
           <ErrorPage />

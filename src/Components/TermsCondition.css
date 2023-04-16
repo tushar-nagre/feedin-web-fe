@@ -1,0 +1,22 @@
+.thank-you-div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 95vh;
+   align-content: center;
+}
+
+.thanks-page-text1-div {
+    padding: 20px;
+}
+
+.thanks-page-text2-div{
+    padding: 20px;
+}
+.terms{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 100%;
+}

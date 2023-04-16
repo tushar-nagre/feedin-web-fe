@@ -13,6 +13,7 @@ export default function DonorRegistration() {
     password: "",
     cpassword: "",
     address: "",
+    termsandcondition: false,
   });
 
   let name, value;
@@ -22,16 +23,29 @@ export default function DonorRegistration() {
 
     name = e.target.name;
     value = e.target.value;
-
-    setUser({ ...user, [name]: value });
+    if (name === "termsandcondition")
+      setUser({ ...user, [name]: e.target.checked });
+    else setUser({ ...user, [name]: value });
   };
 
   const postData = async (e) => {
     e.preventDefault();
 
-    const { name, email, phone, password, cpassword, address } = user;
+    const {
+      name,
+      email,
+      phone,
+      password,
+      cpassword,
+      address,
+      termsandcondition,
+    } = user;
 
     // name validation
+    if (!termsandcondition) {
+      toastError("Please agree terms and condition");
+      return false;
+    }
     const isValidName = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/.test(name);
     if (!isValidName || !name === "") {
       toastError("Please enter valid name.");
@@ -186,6 +200,27 @@ export default function DonorRegistration() {
                 value={user.address}
                 onChange={handleInputs}
               />
+            </div>
+            <div className="tacbox">
+              <input
+                onChange={handleInputs}
+                className="tacboxInput"
+                name="termsandcondition"
+                id="checkbox"
+                type="checkbox"
+              />
+              <label for="checkbox">
+                {" "}
+                I agree to these{" "}
+                <a
+                  className="tacboxA"
+                  href="/termsandcondition"
+                  target="_blank"
+                >
+                  Terms and Conditions
+                </a>
+                .
+              </label>
             </div>
           </div>
           <br />

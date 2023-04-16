@@ -58,3 +58,13 @@
 .form-control{
     width: 50vh;
 }
+.tacbox {
+    display: block;
+    max-width: 800px;
+}
+.tacboxInput{
+    width: auto;
+}
+.tacboxA{
+    color: white;
+}

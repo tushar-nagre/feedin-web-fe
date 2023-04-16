@@ -35,6 +35,8 @@ export default function Login() {
         history.push("/donor-dashboard");
       } else if (userData.usertype === "volunteer") {
         history.push("/volunteer-dashboard");
+      } else if (userData.usertype === "ngo") {
+        history.push("/volunteer-dashboard");
       }
       history.go();
     }
@@ -76,16 +78,6 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            {/* <div className="checkbox-div">
-              <input
-                type="checkbox"
-                className="checkbox-input-div"
-                id="exampleCheck1"
-              />
-              <label className="form-check-label" for="exampleCheck">
-                &nbsp;&nbsp;Agree Terms & Conditions
-              </label>
-            </div> */}
           </dir>
           <div className="btn-group">
             <div className="login-btn">

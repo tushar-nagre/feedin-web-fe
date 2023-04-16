@@ -164,7 +164,7 @@ export default function AddDonation() {
           <div className="best-before-div">
             <label> Best before </label>
             <input
-              type="date"
+              type="datetime-local"
               id="appt"
               name="best_before"
               value={doantion.best_before}
