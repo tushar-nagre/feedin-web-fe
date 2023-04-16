@@ -1,7 +1,44 @@
 import React from "react";
 import wallet from "./wallet.css";
+import { useState } from "react";
+import { useEffect } from "react";
+import { dateTimeFormat } from "../Helper/utils";
 
 export default function Profile() {
+  const [userData, setUserData] = useState({});
+  const getProfile = async () => {
+    try {
+      const res = await fetch("/profile", {
+        method: "Get",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          credentials: "include",
+        },
+      });
+
+      const data = await res.json();
+      console.log("donationData**", userData);
+      if (!data.status === 200) {
+        throw new Error("donorDashboard has some error...");
+      }
+      return data.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+  const Row = (props, index) => (
+    <tr index={props.key}>
+      <td>{dateTimeFormat(props.data.creditedDate)}</td>
+      <td>{props.data.flemsCredited}</td>
+    </tr>
+  );
+  useEffect(() => {
+    (async () => {
+      const data = await getProfile();
+      setUserData(data);
+    })();
+  }, []);
   return (
     <div className="main-wallet-div">
       <div className="profile-name-div">
@@ -9,10 +46,10 @@ export default function Profile() {
       </div>
       <div className="wallet-card">
         <div className="hey-wallet-div">
-          <h5> Hey Tushar, </h5>
+          <h5> Hey {userData.name}, </h5>
         </div>
         <div className="flame-wallet-div">
-          <h2>30 🔥</h2>
+          <h2>{userData.walletFlems} 🔥</h2>
         </div>
         <div className="accumulated-wallet-div">
           <h6>Accumulated Donation Rewards</h6>
@@ -20,22 +57,21 @@ export default function Profile() {
         <div className="accumulated-wallet-div">
           <h5>Transactions</h5>
         </div>
-        <div className="table-wallet-div">
-          <table>
-            <tr>
-              <th>Date And Time</th>
-              <th>Amount of 🔥</th>
-            </tr>
-            <tr>
-              <td>26 MAR 2023 | 20:30 </td>
-              <td>10 🔥</td>
-            </tr>
-            <tr>
-              <td>10 MAR 2023 | 22:30 </td>
-              <td>10 🔥</td>
-            </tr>
-          </table>
-        </div>
+        {userData.walletHistory && userData.walletHistory.length > 0 && (
+          <div className="table-wallet-div">
+            <table>
+              <tr>
+                <th>Date And Time</th>
+                <th>Amount of 🔥</th>
+              </tr>
+              <tbody>
+                {userData.walletHistory.map((x, i) => (
+                  <Row key={i} data={x} />
+                ))}
+              </tbody>
+            </table>
+          </div>
+        )}
       </div>
     </div>
   );

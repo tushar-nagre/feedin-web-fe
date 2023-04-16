@@ -6,6 +6,11 @@
     height: 95vh;
     align-items: center;
 }
+.uploadimg{
+   
+        width: 104px;
+        
+}
 
 #form{
     display: flex;

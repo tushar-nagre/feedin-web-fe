@@ -1,0 +1,26 @@
+.history-main-div {
+    display: flex;
+    flex-direction: column;
+    /* justify-content: center; */
+    align-items: center;
+    height: 100vh;
+    position: sticky;
+    z-index: 99999;
+    /* align-content: center;   */
+    /* overflow-x: auto; */
+}
+
+.history-title-div {
+    padding: 10px;
+    position: sticky;
+}
+
+.history-donations-cards-container {
+    height: auto;
+    width: fit-content;
+}
+
+.history-donations-cards {
+    height: 75vh;
+    overflow-y: auto;
+}

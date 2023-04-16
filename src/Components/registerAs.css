@@ -58,6 +58,36 @@ button {
     color:#000;
 }
 
-.login-page-linl-text{
-    color-scheme: #000;
+
+/* 
+.login-page-linl-text:link {
+    color: #000;
+    background-color: transparent;
+    text-decoration: none;
+}
+.login-page-linl-text:visited {
+    color: #000;
+    background-color: transparent;
+    text-decoration: none;
+}
+
+.login-page-linl-text:hover {
+    color: #000;
+    background-color: transparent;
+    text-decoration: underline;
+}
+
+.login-page-linl-text:active {
+    color: #000;
+    background-color: transparent;
+    text-decoration: underline;
+} */
+
+/* .login-page-link{
+    background-color: #000;
+    text-emphasis-color: #000;
+} */
+
+.login-page-link a{
+    color: white;
 }

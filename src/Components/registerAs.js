@@ -34,9 +34,7 @@ export default function RegisterAs() {
       </div>
       <br />
       <div className="login-page-link">
-        <a classname="login-page-linl-text" href="/login">
-          I Already have an account
-        </a>
+        <a href="/login">Already register? Login here</a>
       </div>
     </div>
   );

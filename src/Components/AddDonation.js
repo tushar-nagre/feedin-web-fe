@@ -1,65 +1,104 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./addDonation.css";
+import { useGetCurrentPosition } from "../Helper/getCurrentLocation";
+import { toastError, toastSuccess } from "../Helper/toast";
+
+// import { getCurrentPosition } from "../Helper/getCurrentLocation";
 
 export default function AddDonation() {
+  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
+    useGetCurrentPosition();
+  // isGeolocationAvailable later to redirect to donation list
+  // isGeolocationEnabled if not ask to give permission
+  // console.log("coords", coords.latitude, coords.longitude);
   const history = useHistory();
   const [doantion, setDonation] = useState({
+    // food_name: "",
     chapti_quantity: "",
     dry_bhaji: "",
     wet_bhaji: "",
     rice: "",
     best_before: "",
     food_img: "",
+    address: "",
+    location: {
+      lat: coords?.latitude,
+      lng: coords?.longitude,
+    },
   });
 
-  let name, value;
-
-  const handleInputs = (e) => {
-    console.log(e);
-    name = e.target.name;
-    value = e.target.value;
+  const handleInputs = async (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
 
     setDonation({ ...doantion, [name]: value });
+    console.log("doantion", doantion);
   };
 
+  const handleUploadFile = async (e) => {
+    console.log(e);
+    const data = new FormData();
+    data.append("file", e.target.files[0]);
+    let fileResponse = await fetch("/upload", {
+      method: "post",
+      body: data,
+    });
+    fileResponse = await fileResponse.json();
+    fileResponse = fileResponse.data;
+    console.log("fileResponse", fileResponse);
+    setDonation({
+      ...doantion,
+      food_img: fileResponse.filename,
+    });
+    console.log("doantion", doantion);
+  };
   const postData = async (e) => {
     e.preventDefault();
-
+    console.log("coords", coords);
     const {
+      // food_name,
       chapti_quantity,
       dry_bhaji,
       wet_bhaji,
       rice,
       best_before,
       food_img,
+      address,
     } = doantion;
-
+    console.log("food_img", food_img);
     const res = await fetch("/adddonation", {
       method: "Post",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
+        // food_name,
         chapti_quantity,
         dry_bhaji,
         wet_bhaji,
         rice,
         best_before,
         food_img,
+        address,
+        location: {
+          lat: coords?.latitude,
+          lng: coords?.longitude,
+        },
       }),
     });
 
     const data = await res.json();
 
     if (res.status === 422 || !data) {
-      window.alert("Invalid Doantion");
+      toastError("Invalid Doantion");
       console.log("Invalid Doantion");
     } else {
-      window.alert("Successful Doantion");
+      toastSuccess("Successful Doantion");
       console.log("Successful Doantion");
 
-      history.push("/profile");
+      history.push("/donor-dashboard");
+      history.go();
     }
   };
 
@@ -67,6 +106,17 @@ export default function AddDonation() {
     <div className="main-add-donation-div">
       <div className="add-donation-form-div">
         <form id="form">
+          {/* <div className="chapati-div">
+            <label> Food Name </label>
+            <input
+              type="text"
+              name="food_name"
+              placeholder="Food name"
+              value={doantion.food_name}
+              onChange={handleInputs}
+            />
+          </div>
+          <hr className="line"></hr> */}
           <div className="chapati-div">
             <label> Chapati </label>
             <input
@@ -122,15 +172,26 @@ export default function AddDonation() {
             />
           </div>
           <hr className="line"></hr>
+          <div className="best-before-div">
+            <label> Address </label>
+            <input
+              type="text"
+              id="appt"
+              name="address"
+              value={doantion.address}
+              onChange={handleInputs}
+            />
+          </div>
+          <hr className="line"></hr>
           <div className="donate-img">
             <label> Upload image </label>
             <input
               type="file"
               id="myFile"
               name="food_img"
-              value={doantion.food_img}
-              onChange={handleInputs}
+              onChange={handleUploadFile}
             />
+            <img className="uploadimg" alt="" src={`${doantion.food_img}`} />
           </div>
           <div className="donate-button">
             <button class="donate-button-1" onClick={postData}>

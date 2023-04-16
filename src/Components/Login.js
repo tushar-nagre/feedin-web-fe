@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import login from "./login.css";
 import { useHistory } from "react-router-dom";
+import { toastError, toastSuccess } from "../Helper/toast";
 
 export default function Login() {
   const history = useHistory();
+  // cookie.remove("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -20,13 +22,21 @@ export default function Login() {
       }),
     });
 
-    const data = res.json();
-    console.log("--->", data);
-    if (res.status || !data) {
-      window.alert("Invalid Credentials.");
+    const data = await res.json();
+    console.log("data", data.data);
+    const userData = data.data;
+    localStorage.setItem("type", userData.usertype);
+    localStorage.setItem("name", userData.name);
+    if (res.status === 401) {
+      toastError("Invalid Credentials.");
     } else {
-      window.alert("Login successfull.");
-      history.push("/donations");
+      toastSuccess("Login successfull.");
+      if (userData.usertype === "donor") {
+        history.push("/donor-dashboard");
+      } else if (userData.usertype === "volunteer") {
+        history.push("/volunteer-dashboard");
+      }
+      history.go();
     }
   };
 
@@ -36,7 +46,7 @@ export default function Login() {
         <img src="./assets/images/feedinLogo.png" alt="image1" height={150} />
       </div>
       <div className="formDiv">
-        <form id="form-div" method="POST">
+        <form method="POST" id="form-div">
           <dir className="input-fields">
             <div className="mb-3">
               <label for="exampleInputEmail1" className="form-label">
@@ -66,7 +76,7 @@ export default function Login() {
                 onChange={(e) => setPassword(e.target.value)}
               />
             </div>
-            <div className="checkbox-div">
+            {/* <div className="checkbox-div">
               <input
                 type="checkbox"
                 className="checkbox-input-div"
@@ -75,7 +85,7 @@ export default function Login() {
               <label className="form-check-label" for="exampleCheck">
                 &nbsp;&nbsp;Agree Terms & Conditions
               </label>
-            </div>
+            </div> */}
           </dir>
           <div className="btn-group">
             <div className="login-btn">
@@ -97,7 +107,11 @@ export default function Login() {
               </button>
             </div> */}
             <div className="forgot-pass-div">
-              <a href="#">Forgot Password</a>
+              <a href="/forgotpass">Forgot Password</a>
+            </div>
+
+            <div className="forgot-pass-div">
+              <a href="/register">Register</a>
             </div>
           </div>
         </form>

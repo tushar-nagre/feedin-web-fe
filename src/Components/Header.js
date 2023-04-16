@@ -1,7 +1,74 @@
 import React from "react";
 import "./Header.css";
+import { useHistory } from "react-router-dom";
+
+const USER_TYPES = {
+  DONOR: "donor",
+  VOLUNTEER: "volunteer",
+  NGO: "ngo",
+};
+
+// const CURRENT_USER_TYPE = USER_TYPES.DONOR;
+
+const HeaderSet = (CURRENT_USER_TYPE) => {
+  let navData;
+
+  if (CURRENT_USER_TYPE === USER_TYPES.DONOR) {
+    navData = {
+      firstMenu: "Dashboard",
+      secondMenu: "Doation Requests",
+      thirdMenu: "Wallet",
+      forthMenu: "Logout",
+      firstLink: "/donor-dashboard",
+      secondLink: "/donor-accept-request",
+      thirdLink: "/wallet",
+      forthLink: "",
+    };
+  } else if (CURRENT_USER_TYPE === USER_TYPES.VOLUNTEER) {
+    navData = {
+      firstMenu: "Dashboard",
+      secondMenu: "History",
+      thirdMenu: "Wallet",
+      forthMenu: "Logout",
+      firstLink: "/volunteer-dashboard",
+      secondLink: "/history",
+      thirdLink: "/wallet",
+      forthLink: "/registeras",
+    };
+  } else if (CURRENT_USER_TYPE === USER_TYPES.NGO) {
+    navData = {
+      firstMenu: "Dashboard",
+      secondMenu: "History",
+      forthMenu: "Logout",
+      firstLink: "",
+      secondLink: "",
+      forthLink: "",
+    };
+  }
+
+  return navData;
+};
+
+const logOut = async () => {
+  localStorage.clear();
+  await fetch("/logout", {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
+};
 
 export default function Header() {
+  const history = useHistory();
+  const CURRENT_USER_TYPE = localStorage.getItem("type");
+  if (!CURRENT_USER_TYPE) {
+    history.push("/login");
+    history.go();
+  }
+  const name = localStorage.getItem("name");
+  const data = HeaderSet(CURRENT_USER_TYPE);
+  console.log("data", data);
   return (
     <div className="header-main navbar navbar-expand-lg navbar-dark bg-dark">
       {/* <nav className="navbar navbar-expand-lg navbar-dark bg-dark"> */}
@@ -15,23 +82,23 @@ export default function Header() {
       <div className="nav-menus">
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           <li className="nav-item">
-            <a className="nav-link" aria-current="page" href="/donations">
-              Dashbord
+            <a className="nav-link" aria-current="page" href={data.firstLink}>
+              {data.firstMenu}
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/recent">
-              History
+            <a className="nav-link" href={data.secondLink}>
+              {data.secondMenu}
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/wallet">
-              Wallet
+            <a className="nav-link" href={data.thirdLink}>
+              {data.thirdMenu}
             </a>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="/register">
-              Login / Register
+            <a onClick={() => logOut()} className="nav-link" href="/login">
+              {data.forthMenu}
             </a>
           </li>
         </ul>
@@ -41,7 +108,7 @@ export default function Header() {
         <ul className="navbar-nav me-auto mb-2 mb-lg-0">
           <li className="nav-item">
             <a className="nav-link" href="/profile">
-              Tushar Nagre
+              {name}
             </a>
           </li>
           <li className="nav-item">

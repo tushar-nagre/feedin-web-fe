@@ -4,7 +4,7 @@ import { Route, Switch } from "react-router-dom";
 // import Login from "./Components/textBox";
 // import Login from "./Components/Login";
 import Header from "./Components/Header";
-import Donations from "./Components/Donations";
+import VolunteerDashboaed from "./Components/VolunteerDashboaed";
 import Login from "./Components/Login";
 import RegisterAs from "./Components/registerAs";
 import DonorRegistration from "./Components/donorRegistration.js";
@@ -14,9 +14,14 @@ import DonationDetails from "./Components/donationDetails.js";
 import Profile from "./Components/profile.js";
 import Wallet from "./Components/wallet.js";
 import ErrorPage from "./Components/error";
-import RecentDonations from "./Components/RecentTransactions";
+import DonorDashboard from "./Components/DonorDashboard";
 import AddDonation from "./Components/AddDonation";
 import ThankYou from "./Components/ThankYou";
+import ForgotPassword from "./Components/ForgotPassword";
+import AcceptRequest from "./Components/AcceptRequestCard";
+import VolunteerDashboard from "./Components/VolunteerDashboaed";
+import History from "./Components/History";
+import { ToastContainer } from "react-toastify";
 
 function App() {
   const donationsItems = [
@@ -58,13 +63,12 @@ function App() {
   ];
   return (
     <div className="MainContainer">
-      <Header />
       <Switch>
         <Route path="/login">
           <Login />
         </Route>
         <Route path="/donations">
-          <Donations donationsItems={donationsItems} />
+          <VolunteerDashboaed donationsItems={donationsItems} />
         </Route>
         <Route path="/register">
           <RegisterAs />
@@ -78,30 +82,90 @@ function App() {
         <Route path="/registerngo">
           <NGORegistration />
         </Route>
-        <Route path="/donations/details">
+        <Route path="/details">
+          <Header />
           <DonationDetails />
         </Route>
         <Route path="/profile">
+          <Header />
           <Profile />
         </Route>
         <Route path="/donate">
+          <Header />
           <AddDonation />
         </Route>
-        <Route path="/wallet">
-          <Wallet />
+        <Route path="/donor-accept-request">
+          <Header />
+          <AcceptRequest />
         </Route>
         <Route path="/thankyou">
+          <Header />
           <ThankYou />
         </Route>
-        <Route path="/recent">
-          <RecentDonations donationsItems={donationsItems} />
+        <Route path="/history">
+          <Header />
+          <History donationsItems={donationsItems} />
+        </Route>
+        <Route path="/wallet">
+          <Header />
+          <Wallet />
+        </Route>
+        <Route path="/donor-dashboard">
+          <Header />
+          <DonorDashboard donationsItems={donationsItems} />
+        </Route>
+        <Route path="/volunteer-dashboard">
+          <Header />
+          <VolunteerDashboard />
+        </Route>
+        <Route path="/forgotpass">
+          <ForgotPassword />
+        </Route>
+        <Route path="/accept-request">
+          <AcceptRequest />
         </Route>
         <Route>
           <ErrorPage />
         </Route>
       </Switch>
+      <ToastContainer />
     </div>
   );
 }
 
 export default App;
+
+// const USER_TYPES = {
+//   DONOR: "Donor",
+//   VOLUNTEER: "Volunteer",
+//   NGO: "Ngo",
+// };
+
+// const CURRENT_USER_TYPE = USER_TYPES.VOLUNTEER;
+
+// const HeaderSet = () => {
+//   let navData;
+
+//   if (CURRENT_USER_TYPE === USER_TYPES.DONOR) {
+//     navData = {
+//       firstMenu: "Dashboard",
+//       secondMenu: "History",
+//       thirdMenu: "Wallet",
+//       forthMenu: "Logout",
+//     };
+//   } else if (CURRENT_USER_TYPE === USER_TYPES.VOLUNTEER) {
+//     navData = {
+//       firstMenu: "Dashboard",
+//       secondMenu: "History",
+//       thirdMenu: "Wallet",
+//       forthMenu: "Logout",
+//     };
+//   } else if (CURRENT_USER_TYPE === USER_TYPES.NGO) {
+//     navData = {
+//       firstMenu: "Dashboard",
+//       secondMenu: "History",
+//       thirdMenu: "Wallet",
+//       forthMenu: "Logout",
+//     };
+//   }
+// };

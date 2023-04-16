@@ -13,7 +13,7 @@
 }
 .formDiv{
     height: fit-content;
-    width: 45%;
+    width: auto;
 }
 #form-div{
     /* display: flex;

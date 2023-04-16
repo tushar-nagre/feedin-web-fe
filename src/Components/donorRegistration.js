@@ -1,7 +1,8 @@
 import React, { useState } from "react";
 import { useHistory } from "react-router-dom";
+import { toastError, toastSuccess } from "../Helper/toast";
 
-import donorRegistration from "./donorRegistration.css";
+import "./donorRegistration.css";
 
 export default function DonorRegistration() {
   const history = useHistory();
@@ -18,6 +19,7 @@ export default function DonorRegistration() {
 
   const handleInputs = (e) => {
     console.log(e);
+
     name = e.target.name;
     value = e.target.value;
 
@@ -29,7 +31,39 @@ export default function DonorRegistration() {
 
     const { name, email, phone, password, cpassword, address } = user;
 
-    const res = await fetch("/register", {
+    // name validation
+    const isValidName = /^[A-Za-z]+(?:\s[A-Za-z]+)*$/.test(name);
+    if (!isValidName || !name === "") {
+      toastError("Please enter valid name.");
+      return "Please enter valid name.";
+    }
+
+    // email validation
+    const isValidEmail = /\S+@\S+\.\S+/.test(email);
+    if (!isValidEmail || !email === "") {
+      toastError("Please enter valid eamil address.");
+      return "Please enter valid eamil address.";
+    }
+
+    // phone validation
+    const isValidMobileNumber = /^(\+91|0)?[6789]\d{9}$/.test(phone);
+    if (!isValidMobileNumber || !phone === "") {
+      toastError("please enter valid phone no.");
+      return "please enter valid phone no.";
+    }
+
+    // password validation
+    const passwordRegex =
+      /^(?=.*\d)(?=.*[!@#$%^&*])(?=.*[a-z])(?=.*[A-Z]).{8,}$/.test(password);
+    if (!passwordRegex || !password === "") {
+      toastError(
+        "Password at least one uppercase letter, one lowercase letter, one digit, and one special symbol."
+      );
+      return "Password at least one uppercase letter, one lowercase letter, one digit, and one special symbol.";
+    }
+
+    const type = "donor";
+    const res = await fetch("/register/donor", {
       method: "Post",
       headers: {
         "Content-Type": "application/json",
@@ -41,19 +75,21 @@ export default function DonorRegistration() {
         password,
         cpassword,
         address,
+        type,
       }),
     });
 
     const data = await res.json();
 
-    if (res.status === 422 || !data) {
-      window.alert("Invalid registration");
-      console.log("Invalid registration");
+    if (data.status === false) {
+      toastError(`Invalid registration.`);
+      console.log(`Invalid registration ${data.error}`);
     } else {
-      window.alert("Successful registration");
+      toastSuccess("Registration successful ");
       console.log("Successful registration");
 
       history.push("/login");
+      history.go();
     }
   };
 
@@ -83,7 +119,7 @@ export default function DonorRegistration() {
             </div>
 
             <div className="mb-3">
-              <label for="exampleInputEmail1" className="donor-form-label">
+              <label htmlFor="exampleInputEmail1" className="donor-form-label">
                 Email address
               </label>
               <input
@@ -102,7 +138,7 @@ export default function DonorRegistration() {
             <div className="mb-3">
               <label className="form-label">Mobile Number</label>
               <input
-                type="tel"
+                type="number"
                 className="form-control "
                 name="phone"
                 pattern="[0-9]{3}-[0-9]{2}-[0-9]{3}"
@@ -113,7 +149,7 @@ export default function DonorRegistration() {
             </div>
 
             <div className="mb-3">
-              <label for="exampleInputPassword1" className="form-label">
+              <label htmlFor="exampleInputPassword1" className="form-label">
                 Password
               </label>
               <input
@@ -127,7 +163,7 @@ export default function DonorRegistration() {
             </div>
 
             <div className="mb-3">
-              <label for="exampleInputPassword1" className="form-label">
+              <label htmlFor="exampleInputPassword1" className="form-label">
                 Confirm Password
               </label>
               <input

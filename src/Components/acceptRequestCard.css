@@ -1,0 +1,23 @@
+.accept-requests-main-div{
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+}
+
+.details-text{
+    padding-top: 5px;
+    align-self: center;
+    position: sticky;
+    color: var(--bs-heading-color, inherit);;
+}
+
+.accept-requests-cards-container{
+    height: auto;
+    width: fit-content; 
+    align-self: center;  
+}
+
+.accept-requests-cards{
+    height: 95vh;
+    overflow-y: auto;
+}

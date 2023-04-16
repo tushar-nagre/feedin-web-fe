@@ -1,23 +1,82 @@
 import React from "react";
 import "./Product.css";
-
+import { dateTimeFormat, getFoodName } from "../Helper/utils";
+import { useEffect } from "react";
+import { useState } from "react";
+import { toastError, toastSuccess } from "../Helper/toast";
+let locationData;
 export default function Product(props) {
   console.log("ffdxcgvmb", props);
+  const [donation, setDonation] = useState(props.donation);
+  locationData = props.locationData;
+  const requestOrder = async (request) => {
+    if (request.status === 1) {
+      const res = await fetch("/request/place", {
+        method: "Post",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          // food_name,
+          orderId: request._id,
+          location: locationData,
+        }),
+      });
+
+      const data = await res.json();
+
+      if (res.status === 422 || !data) {
+        toastError("Invalid Doantion");
+        console.log("Invalid Doantion");
+      } else {
+        props.donation.status = 2;
+        setDonation(props.donation);
+        toastSuccess("Successful Request");
+        console.log("Successful Request");
+      }
+      return true;
+    } else if (request.status === 3) {
+      // call now logic
+    }
+  };
+  const buttonText = (request) => {
+    if (request.status === 1) {
+      return "Request";
+    }
+    if (request.status === 2) {
+      return "Pending";
+    }
+    if (request.status === 3) {
+      return "Call Now";
+    }
+  };
+  useEffect(() => {}, [props.donation]);
   return (
     <>
-      <div className="card-group">
-        <div className="main-card">
-          <div className="img-div">
-            <img
-              src="https://images.unsplash.com/photo-1546069901-ba9599a7e63c?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxleHBsb3JlLWZlZWR8MXx8fGVufDB8fHx8&w=1000&q=80"
-              alt=""
-            />
+      <div className="card-group-product">
+        {/* <a href="/details"> */}
+        <div className="main-card-product">
+          <div className="img-div-product">
+            <img src={donation.food_img} alt="" />
+
+            <div className="requestbutton">
+              <button
+                disabled={
+                  donation.status === 1 || donation.status === 3 ? false : true
+                }
+                onClick={() => requestOrder(donation)}
+                className="requestbutton"
+              >
+                {buttonText(donation)}
+              </button>
+            </div>
           </div>
+
           <hr />
-          <div className="card-details">
+          <div className="card-details-product">
             <div className="name-rating">
               <div className="usrname">
-                <p>Tushar Nagre</p>
+                <p>{donation.donor.name}</p>
               </div>
               <div className="rating-box">
                 <p>
@@ -25,22 +84,30 @@ export default function Product(props) {
                 </p>
               </div>
             </div>
-            <div className="type-qty">
-              <div className="food-type">
-                <p>Biryani</p>
-              </div>
-              <div className="food-qty">
-                <p>5 kg</p>
-              </div>
+            <div className="food-dist">
+              <p>{getFoodName(donation)}</p>
             </div>
             <div className="food-dist">
-              <p>1.2km from your location</p>
+              <p>{donation.distance} from your location</p>
+            </div>
+            <a
+              target="_blank"
+              href={`https://www.google.com/maps/search/?api=1&query=${donation?.donorLocation.lat},${donation?.donorLocation.lng}`}
+              rel="noreferrer"
+            >
+              <div className="food-dist">
+                <p>Address: {donation.donorAddress}</p>
+              </div>
+            </a>
+            <div className="best-before">
+              <p>Donate At {dateTimeFormat(donation.best_before)}</p>
             </div>
             <div className="best-before">
-              <p>Best Before 5 hrs</p>
+              <p>Best Before {dateTimeFormat(donation.best_before)}</p>
             </div>
           </div>
         </div>
+        {/* </a> */}
       </div>
     </>
     // <div classNameName="card mb-3">

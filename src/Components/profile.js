@@ -1,7 +1,38 @@
 import React from "react";
 import profile from "./profile.css";
+import { useEffect } from "react";
+import { useState } from "react";
 
 export default function Profile() {
+  const [userData, setUserData] = useState({});
+  const getProfile = async () => {
+    try {
+      const res = await fetch("/profile", {
+        method: "Get",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          credentials: "include",
+        },
+      });
+
+      const data = await res.json();
+      console.log("donationData**", userData);
+      if (!data.status === 200) {
+        throw new Error("donorDashboard has some error...");
+      }
+      return data.data;
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  useEffect(() => {
+    (async () => {
+      const data = await getProfile();
+      setUserData(data);
+    })();
+  }, []);
   return (
     <div className="main-profile-div">
       <div className="profile-name-div">
@@ -9,33 +40,34 @@ export default function Profile() {
       </div>
       <div className="profile-card">
         <div className="hey-div">
-          <h5> Hey Tushar, </h5>
+          <h5> Hey {userData.name}, </h5>
         </div>
         <div className="profile-pic-div-main">
           <img
+            alt=""
             className="profile-pic-div"
             src="./assets/images/img_avatar.png"
           />
         </div>
         <div className="username-div">
           <h5>
-            <b>Tushar Nagre</b>
+            <b>{userData.name}</b>
           </h5>
         </div>
         <div className="phone-div">
-          <h5>+91 - 7499747159</h5>
+          <h5>{userData.phone}</h5>
         </div>
         <div className="email-div">
-          <h5 typeof="email">tushar.nagre21@vit.edu </h5>
+          <h5 typeof="email">{userData.email} </h5>
         </div>
         <div className="profile-donation-flems-div">
           <div className="profile-donation-div">
             <h5>Donations</h5>
-            <h5 className="donstions-number">3</h5>
+            <h5 className="donstions-number">{userData.totalOrder}</h5>
           </div>
           <div className="profile-flems-div">
             <h5>Flames</h5>
-            <h5 className="flems-number">30 🔥</h5>
+            <h5 className="flems-number">{userData.walletFlems} 🔥</h5>
           </div>
         </div>
       </div>
