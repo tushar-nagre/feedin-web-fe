@@ -13,6 +13,7 @@ export default function NGORegistration() {
     address: "",
     organization_name: "",
     termsandcondition: false,
+    certificatePath: "",
   });
 
   let name, value;
@@ -28,6 +29,24 @@ export default function NGORegistration() {
     else setUser({ ...user, [name]: value });
   };
 
+  const handleUploadFile = async (e) => {
+    console.log(e);
+    const data = new FormData();
+    data.append("file", e.target.files[0]);
+    let fileResponse = await fetch("/upload/re", {
+      method: "post",
+      body: data,
+    });
+    fileResponse = await fileResponse.json();
+    fileResponse = fileResponse.data;
+    console.log("fileResponse", fileResponse);
+    setUser({
+      ...user,
+      certificatePath: fileResponse.filename,
+    });
+    console.log("doantion", user);
+  };
+
   const postData = async (e) => {
     e.preventDefault();
 
@@ -40,6 +59,7 @@ export default function NGORegistration() {
       address,
       organization_name,
       termsandcondition,
+      certificatePath,
     } = user;
 
     if (!termsandcondition) {
@@ -76,6 +96,10 @@ export default function NGORegistration() {
       );
       return "Password at least one uppercase letter, one lowercase letter, one digit, and one special symbol.";
     }
+    if (!certificatePath) {
+      toastError("Please upload certificate");
+      return false;
+    }
 
     const type = "donor";
     const res = await fetch("/register/ngo", {
@@ -92,6 +116,7 @@ export default function NGORegistration() {
         address,
         organization_name,
         type,
+        certificatePath,
       }),
     });
 
@@ -221,7 +246,9 @@ export default function NGORegistration() {
               <input
                 type="file"
                 className="form-control"
+                id="myFile"
                 placeholder="NGO certificate"
+                onChange={handleUploadFile}
               />
             </div>
             <div className="tacbox">

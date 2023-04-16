@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
 import Product from "./Product.js";
 import "./volunteerDashboard.css";
@@ -5,7 +6,7 @@ import { useEffect } from "react";
 import { useHistory } from "react-router-dom";
 import { useState } from "react";
 import { useGetCurrentPosition } from "../Helper/getCurrentLocation.js";
-import { toastError, toastSuccess } from "../Helper/toast.js";
+import { toastError } from "../Helper/toast.js";
 let locationData = { lat: null, lng: null };
 export default function VolunteerDashboard() {
   const history = useHistory();

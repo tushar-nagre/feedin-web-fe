@@ -115,7 +115,7 @@ function App() {
           <Header />
           <DonorDashboard donationsItems={donationsItems} />
         </Route>
-        <Route path="/volunteer-dashboard">
+        <Route path="/dashboard">
           <Header />
           <VolunteerDashboard />
         </Route>

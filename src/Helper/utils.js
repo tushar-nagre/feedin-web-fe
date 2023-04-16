@@ -24,5 +24,6 @@ export const getFoodName = (donation) => {
       ? value + `, Rice (${donation.rice} kg)`
       : `Rice (${donation.rice} kg)`;
   }
+  console.log("value", value);
   return value;
 };

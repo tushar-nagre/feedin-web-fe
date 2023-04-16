@@ -1,11 +1,11 @@
 import React from "react";
-import registerAs from "./registerAs.css";
+import "./registerAs.css";
 
 export default function RegisterAs() {
   return (
     <div className="main-registeras">
       <div className="logo-div">
-        <img src="./assets/images/feedinLogo.png" height={150} />
+        <img alt="" src="./assets/images/feedinLogo.png" height={150} />
       </div>
       <div className="text-div">Register As</div>
 

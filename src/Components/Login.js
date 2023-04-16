@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import login from "./login.css";
+import "./login.css";
 import { useHistory } from "react-router-dom";
 import { toastError, toastSuccess } from "../Helper/toast";
 
@@ -34,9 +34,9 @@ export default function Login() {
       if (userData.usertype === "donor") {
         history.push("/donor-dashboard");
       } else if (userData.usertype === "volunteer") {
-        history.push("/volunteer-dashboard");
+        history.push("/dashboard");
       } else if (userData.usertype === "ngo") {
-        history.push("/volunteer-dashboard");
+        history.push("/dashboard");
       }
       history.go();
     }
@@ -101,9 +101,9 @@ export default function Login() {
             <div className="forgot-pass-div">
               <a href="/forgotpass">Forgot Password</a>
             </div>
-
+            <br />
             <div className="forgot-pass-div">
-              <a href="/register">Register</a>
+              <a href="/register">Don't have account Register Here</a>
             </div>
           </div>
         </form>

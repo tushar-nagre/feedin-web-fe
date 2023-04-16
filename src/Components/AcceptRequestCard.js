@@ -1,8 +1,10 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import "./donationDetails.css";
 import "./acceptRequestCard.css";
 import { dateTimeFormat, getFoodName } from "../Helper/utils";
+import { toastSuccess } from "../Helper/toast";
 
 export default function AcceptRequestCard() {
   const history = useHistory();
@@ -25,7 +27,8 @@ export default function AcceptRequestCard() {
         throw new Error("Order accept has some error...");
       }
       callDonorDashboard();
-      alert("order accepted suceesfully");
+      toastSuccess("order accepted suceesfully");
+      //alert("order accepted suceesfully");
     } catch (e) {
       alert(e);
     }
@@ -68,7 +71,7 @@ export default function AcceptRequestCard() {
     <div className="accept-requests-main-div">
       <div className="details-text">
         <h3>
-          <i class="fa fa-paper-plane"> </i> Donation requests
+          <i className="fa fa-paper-plane"> </i> Donation requests
         </h3>
       </div>
       <div className="accept-requests-cards-container">
@@ -120,15 +123,13 @@ export default function AcceptRequestCard() {
                 </p>
               </div>
             </div> */}
-                    {donation.chapti_quantity > 0 && (
-                      <jsx>
-                        <div className="type-qty">
-                          <div className="food-type">
-                            <p>{getFoodName(donation)}</p>
-                          </div>
-                        </div>
-                      </jsx>
-                    )}
+
+                    <div className="type-qty">
+                      <div className="food-type">
+                        <p>{getFoodName(donation)}</p>
+                      </div>
+                    </div>
+
                     <div className="card-body-3">
                       <div className="card-body-3-field-1">
                         <span className="card-text-1">Requested At</span>

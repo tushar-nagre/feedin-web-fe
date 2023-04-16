@@ -7,8 +7,7 @@ import { toastError, toastSuccess } from "../Helper/toast";
 // import { getCurrentPosition } from "../Helper/getCurrentLocation";
 
 export default function AddDonation() {
-  const { coords, isGeolocationAvailable, isGeolocationEnabled } =
-    useGetCurrentPosition();
+  const { coords } = useGetCurrentPosition();
   // isGeolocationAvailable later to redirect to donation list
   // isGeolocationEnabled if not ask to give permission
   // console.log("coords", coords.latitude, coords.longitude);
@@ -51,7 +50,6 @@ export default function AddDonation() {
       ...doantion,
       food_img: fileResponse.filename,
     });
-    console.log("doantion", doantion);
   };
   const postData = async (e) => {
     e.preventDefault();
@@ -89,10 +87,10 @@ export default function AddDonation() {
     });
 
     const data = await res.json();
-
-    if (res.status === 422 || !data) {
-      toastError("Invalid Doantion");
-      console.log("Invalid Doantion");
+    console.log(data);
+    if (!data || !data.status) {
+      toastError(data.error);
+      console.log(data.error);
     } else {
       toastSuccess("Successful Doantion");
       console.log("Successful Doantion");
@@ -194,7 +192,7 @@ export default function AddDonation() {
             <img className="uploadimg" alt="" src={`${doantion.food_img}`} />
           </div>
           <div className="donate-button">
-            <button class="donate-button-1" onClick={postData}>
+            <button className="donate-button-1" onClick={postData}>
               Donate food
             </button>
           </div>

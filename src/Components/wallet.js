@@ -1,5 +1,6 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-import wallet from "./wallet.css";
+import "./wallet.css";
 import { useState } from "react";
 import { useEffect } from "react";
 import { dateTimeFormat } from "../Helper/utils";

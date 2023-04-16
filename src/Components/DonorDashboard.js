@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useEffect, useState } from "react";
 import RecentProduct from "./RecentProduct";
 import "../Components/donorDashboard.css";
@@ -39,30 +40,39 @@ export default function DonorDashboard() {
     })();
   }, []);
 
-  // console.log("hehehhe 3333");
   return (
     <div className="recent-transactions-main-div">
-      <div className="recent-title-div">
-        <h2 className="recent-title">
-          <i className="fas fa-clock"></i> Recent Donations
-        </h2>
-      </div>
-      <div className="recent-donations-cards-container">
-        <dir className="recent-donations-cards">
-          {donationData.map((donation, i) => {
-            return (
-              <>
-                <RecentProduct donation={donation} key={i} />
-              </>
-            );
-          })}
-        </dir>
-      </div>
-      <div className="recent-donation-page-donate-button">
-        <a href="/donate">
-          <button class="recent-page-donate-button">Donate food</button>
-        </a>
-      </div>
+      {donationData.length === 0 ? (
+        <>
+          <h3>No Recent Donation </h3>
+        </>
+      ) : (
+        <>
+          <div className="recent-title-div">
+            <h2 className="recent-title">
+              <i className="fas fa-clock"></i> Recent Donations
+            </h2>
+          </div>
+          <div className="recent-donations-cards-container">
+            <dir className="recent-donations-cards">
+              {donationData.map((donation, i) => {
+                return (
+                  <>
+                    <RecentProduct donation={donation} key={i} />
+                  </>
+                );
+              })}
+            </dir>
+          </div>
+        </>
+      )}
+      <>
+        <div className="recent-donation-page-donate-button">
+          <a href="/donate">
+            <button className="recent-page-donate-button">Donate food</button>
+          </a>
+        </div>
+      </>
     </div>
   );
 }

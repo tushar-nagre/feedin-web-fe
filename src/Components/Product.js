@@ -10,6 +10,7 @@ export default function Product(props) {
   const [donation, setDonation] = useState(props.donation);
   locationData = props.locationData;
   const requestOrder = async (request) => {
+    console.log("donation", donation);
     if (request.status === 1) {
       const res = await fetch("/request/place", {
         method: "Post",
@@ -37,6 +38,7 @@ export default function Product(props) {
       return true;
     } else if (request.status === 3) {
       // call now logic
+      window.open(`tel:${donation.donor.phone}`);
     }
   };
   const buttonText = (request) => {

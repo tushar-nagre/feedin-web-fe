@@ -1,10 +1,12 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from "react";
-import profile from "./profile.css";
+import "./profile.css";
 import { useEffect } from "react";
 import { useState } from "react";
 
 export default function Profile() {
   const [userData, setUserData] = useState({});
+  const role = localStorage.getItem("type");
   const getProfile = async () => {
     try {
       const res = await fetch("/profile", {
@@ -65,9 +67,13 @@ export default function Profile() {
             <h5>Donations</h5>
             <h5 className="donstions-number">{userData.totalOrder}</h5>
           </div>
+
           <div className="profile-flems-div">
-            <h5>Flames</h5>
-            <h5 className="flems-number">{userData.walletFlems} 🔥</h5>
+            <h5>{role !== "ngo" ? "Flames" : "Role"}</h5>
+            {role !== "ngo" && (
+              <h5 className="flems-number">{userData.walletFlems} 🔥</h5>
+            )}
+            {role === "ngo" && <h5 className="flems-number">NGO</h5>}
           </div>
         </div>
       </div>

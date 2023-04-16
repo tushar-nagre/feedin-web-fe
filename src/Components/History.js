@@ -42,17 +42,23 @@ export default function History(props) {
           <i class="fas fa-clock"></i> Recent Donations
         </h2>
       </div>
-      <div className="history-donations-cards-container">
-        <dir className="history-donations-cards">
-          {donationData.map((donation, i) => {
-            return (
-              <>
-                <RecentProduct donation={donation} from="history" />
-              </>
-            );
-          })}
-        </dir>
-      </div>
+      {donationData.length === 0 ? (
+        <jsx>
+          <h3>No Recent Donation </h3>
+        </jsx>
+      ) : (
+        <div className="history-donations-cards-container">
+          <dir className="history-donations-cards">
+            {donationData.map((donation, i) => {
+              return (
+                <>
+                  <RecentProduct donation={donation} from="history" />
+                </>
+              );
+            })}
+          </dir>
+        </div>
+      )}
     </div>
   );
 }

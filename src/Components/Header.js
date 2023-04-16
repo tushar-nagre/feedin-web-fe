@@ -7,13 +7,14 @@ const USER_TYPES = {
   VOLUNTEER: "volunteer",
   NGO: "ngo",
 };
-
+let where = null;
 // const CURRENT_USER_TYPE = USER_TYPES.DONOR;
 
 const HeaderSet = (CURRENT_USER_TYPE) => {
   let navData;
 
   if (CURRENT_USER_TYPE === USER_TYPES.DONOR) {
+    where = "/donate";
     navData = {
       firstMenu: "Dashboard",
       secondMenu: "Doation Requests",
@@ -22,27 +23,29 @@ const HeaderSet = (CURRENT_USER_TYPE) => {
       firstLink: "/donor-dashboard",
       secondLink: "/donor-accept-request",
       thirdLink: "/wallet",
-      forthLink: "",
+      forthLink: "/registeras",
     };
   } else if (CURRENT_USER_TYPE === USER_TYPES.VOLUNTEER) {
+    where = "/dashboard";
     navData = {
       firstMenu: "Dashboard",
       secondMenu: "History",
       thirdMenu: "Wallet",
       forthMenu: "Logout",
-      firstLink: "/volunteer-dashboard",
+      firstLink: "/dashboard",
       secondLink: "/history",
       thirdLink: "/wallet",
       forthLink: "/registeras",
     };
   } else if (CURRENT_USER_TYPE === USER_TYPES.NGO) {
+    where = "/dashboard";
     navData = {
       firstMenu: "Dashboard",
       secondMenu: "History",
       forthMenu: "Logout",
-      firstLink: "",
-      secondLink: "",
-      forthLink: "",
+      firstLink: "/dashboard",
+      secondLink: "/history",
+      forthLink: "/registeras",
     };
   }
 
@@ -73,7 +76,7 @@ export default function Header() {
     <div className="header-main navbar navbar-expand-lg navbar-dark bg-dark">
       {/* <nav className="navbar navbar-expand-lg navbar-dark bg-dark"> */}
       <div className="nav-logo">
-        <a className="navbar-brand" href="#">
+        <a className="navbar-brand" href={where}>
           {" "}
           FeedIN{" "}
         </a>
